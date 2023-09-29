@@ -3,7 +3,8 @@ padding: 0;
 }
 
 .weathercontainer{
-  background: linear-gradient(120deg,rgb(187, 226, 241),rgb(90, 184, 222));
+  /* background: linear-gradient(120deg,rgb(250, 213, 145),rgb(202, 89, 8)); */
+  background: linear-gradient(120deg,rgb(207, 234, 244),rgb(90, 184, 222));
   /* background-color: rgb(187, 226, 241); */
     width: 100vw;
     height: 100vh;
@@ -21,9 +22,9 @@ padding: 0;
 }
 
 .city{
-    font-size: 100px;
-    color: white;
-    font-weight:500;
+    font-size: 90px;
+    color: rgb(12, 87, 117);
+    font-weight:bold;
     text-align: center;
     width: 100%;
     height: 20%;
@@ -32,6 +33,7 @@ padding: 0;
     padding-left: 100px;
     align-items: end;
     position: relative;
+    text-transform: capitalize;
    
 }
 /* .pin{
@@ -47,7 +49,9 @@ padding: 0;
     text-align:start;
     display: flex;
  
-  padding-top: 40px;
+    padding-top: 40px;
+
+    color: rgb(90, 184, 222);
   
 
 }
@@ -76,8 +80,10 @@ padding-left: 100px;
 }
 .temperature{
     font-size: 140px;
-    color: white;
+    /* color: white; */
     font-weight: 500;
+    color: orange;
+  
    
    
   
@@ -85,7 +91,7 @@ padding-left: 100px;
 }
 .feels-like{
     font-size: 40px;
-    color: white;
+    color: #dde9ed;
     font-weight: 500;
     
 
@@ -98,17 +104,18 @@ padding-left: 100px;
 
 }
 .sun{
-    width: 80%;
+    width: 70%;
     display: block;
     margin: 40px auto;
 
 }
 .description{
     font-size: 80px;
-    font-weight: bold;
-    color: white;
+    font-weight:200;
+    color: #dde9ed;
     text-align: center;
-    margin-top: -60px;
+    /* margin-top: -60px; */
+  
  }
 .col-3{
     width: 30%;
@@ -122,12 +129,12 @@ padding-left: 100px;
 
 }
 .inputefield{
-    width: 80%;
+    width: 85%;
     
     background-color: rgb(165, 222, 245);
     border-radius: 10px;
-    font-size: 20px;
-    padding: 10px 20px;
+    font-size: 25px;
+    padding: 12px 20px;
     color: white;
     border: none;
 }

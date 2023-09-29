@@ -1,8 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import './WeatherApp.css'
+import mist from './mist.png'
+import rain from './rain-sun.png'
+import cloud from './cloud.png'
+import clear from './clear.png'
 import sun from'./sun.png'
+import haze from './haze.png'
+import './WeatherApp.css'
+
 import imgsunrise from './sunrise.png'
 import imgsunset from './sunset.png'
 import wind from './wind1.png'
@@ -18,6 +24,34 @@ const WeatherApp=()=>{
   const [sunrise,setSunrise]=useState('')
   const [date,setDate]=useState()
   const [pune,setPune]=useState("Pune")
+  const [sunstates,setSunstate]=useState()
+  const [sunimg,setSunimg]=useState()
+  useEffect(()=>{
+    const sunstate=storeweatherdata?.weather?storeweatherdata?.weather[0]?.main:"";
+    setSunstate(sunstate)
+
+  },[weatherData])
+  useEffect(()=>{
+    if(sunstates=="Haze"){
+      setSunimg(haze)
+    }
+    else if(sunstates=="Clouds"){
+      setSunimg(cloud)
+    }
+    else if(sunstates=="Clear"){
+      setSunimg(clear)
+    }
+    else if(sunstates=="Rain"){
+      setSunimg(rain)
+    }
+   else if(sunstates=="Mist"){
+      setSunimg(mist)
+    }
+    else{
+      setSunimg(sun)
+    }
+
+  },[weatherData])
 //  -------------------getting month------------
   const [months,setMonths]=useState([
     "january",'february',"March","April","May","June","July","August","September","October","November","December"
@@ -121,8 +155,11 @@ const WeatherApp=()=>{
    setSunrise(sunrisetime);
 
   },[weatherData])
-  const sunsetrealtime=new Date(sunset* 1000).toLocaleTimeString()
-  const sunriserealtime=new Date(sunrise * 1000).toLocaleTimeString()
+  const sunsetrealtime=new Date(sunset* 1000).getHours();
+  const sunsetminute=new Date(sunset* 1000).getMinutes();
+  const sunriserealtime=new Date(sunrise * 1000).getHours();
+  const sunriseminute=new Date(sunrise * 1000).getMinutes();
+  
   console.log(sunriserealtime,sunsetrealtime)
   async function weatherData(){
   
@@ -160,8 +197,8 @@ const WeatherApp=()=>{
 
       </div>
       <div className="col-2">
-        <img src={sun} className="sun"/>
-        <div className="description">{storeweatherdata?.weather?storeweatherdata?.weather[0]?.main:""}</div>
+        <img src={sunimg} className="sun"/>
+        <div className="description">{sunstates}</div>
 
       </div>
       <div className="col-3">
@@ -172,8 +209,8 @@ const WeatherApp=()=>{
       setCity(e.target.value)
      }}/>
       <div className="weatherinfo"> 
-       <WeatherTells img={imgsunrise} text={sunriserealtime}/>
-        <WeatherTells img={imgsunset} text={sunsetrealtime}/>
+       <WeatherTells img={imgsunrise} text={`sunrise ${sunriserealtime}:${sunriseminute}`}/>
+        <WeatherTells img={imgsunset} text={`sunset  ${sunsetrealtime}:${sunsetminute}`}/>
         <WeatherTells img={wind} text={`${storeweatherdata?.wind?.speed}km/h`}/>
         <WeatherTells img={humidity} text={`${storeweatherdata?.main?storeweatherdata?.main?.humidity:''}℉`}/>
         <WeatherTells img={visibility} text={`${storeweatherdata?.visibility?storeweatherdata?.visibility:''}Mtr`}/>
