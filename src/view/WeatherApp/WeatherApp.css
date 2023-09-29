@@ -1,0 +1,142 @@
+*{margin: 0;
+padding: 0;
+}
+
+.weathercontainer{
+  background: linear-gradient(120deg,rgb(187, 226, 241),rgb(90, 184, 222));
+  /* background-color: rgb(187, 226, 241); */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.col-1{
+    width: 30%;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    
+
+}
+
+.city{
+    font-size: 100px;
+    color: white;
+    font-weight:500;
+    text-align: center;
+    width: 100%;
+    height: 20%;
+    /* background-color: red; */
+    display: flex;
+    padding-left: 100px;
+    align-items: end;
+    position: relative;
+   
+}
+/* .pin{
+    width:45px ;
+    position: absolute;
+    top: 50px;
+    left: 25px;
+} */
+.date{
+    font-size: 50px;
+    color: white;
+    font-weight: 500;
+    text-align:start;
+    display: flex;
+ 
+  padding-top: 40px;
+  
+
+}
+.text-align{
+    /* background-color: red; */
+  padding-left: auto;
+
+ width: 100%;
+ height: 30%;
+ /* background-color: green; */
+ padding-left: 100px;
+
+ 
+ 
+}
+.temp{
+    /* background-color: pink; */
+    width: 100%;
+height: 40%;
+display: flex;
+ /* text-align: center; */
+
+justify-content: start;
+flex-direction: column;
+padding-left: 100px;
+}
+.temperature{
+    font-size: 140px;
+    color: white;
+    font-weight: 500;
+   
+   
+  
+
+}
+.feels-like{
+    font-size: 40px;
+    color: white;
+    font-weight: 500;
+    
+
+}
+.col-2{
+    width: 40%;
+    height: 100%;
+    /* background-color: green; */
+
+
+}
+.sun{
+    width: 80%;
+    display: block;
+    margin: 40px auto;
+
+}
+.description{
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-top: -60px;
+ }
+.col-3{
+    width: 30%;
+    height: 100%;
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    
+
+}
+.inputefield{
+    width: 80%;
+    
+    background-color: rgb(165, 222, 245);
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+}
+.weatherinfo{
+    width: 100%;
+  
+    
+    
+    
+    
+}
+

@@ -1,7 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import './WeatherApp.css'
+import sun from'./sun.png'
+import imgsunrise from './sunrise.png'
+import imgsunset from './sunset.png'
+import wind from './wind1.png'
+import visibility from './visibility.png'
+import humidity from './humidity.png'
+import pin from './pin.png'
+import WeatherTells from "../../componentes/WeatherTells/WeatherTells";
 
 const WeatherApp=()=>{
   const [storeweatherdata,setStoreweatherdata]=useState('')
@@ -9,9 +17,10 @@ const WeatherApp=()=>{
   const [sunset,setSunset]=useState('')
   const [sunrise,setSunrise]=useState('')
   const [date,setDate]=useState()
+  const [pune,setPune]=useState("Pune")
 //  -------------------getting month------------
   const [months,setMonths]=useState([
-    "january",'february',"March","April","May","June","July","August","Sep.","Oct.","Nov.","dec."
+    "january",'february',"March","April","May","June","July","August","September","October","November","December"
 
   ])
   const [monthname,setMonthname]=useState('')
@@ -61,7 +70,7 @@ const WeatherApp=()=>{
 
   // ---------------getting day---------------------
   const [days,setDays]=useState([
-    'sunday','monday','tuesday','wednesday','thusday','firday','saturday'
+    'Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'
   ])
   const [dayname,setDayname]=useState()
   useEffect(()=>{
@@ -118,7 +127,7 @@ const WeatherApp=()=>{
   async function weatherData(){
   
     try{
-     const response= await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f652964084c552e8c0492237a3fabd9c`)
+     const response= await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city==null?pune:city}&appid=f652964084c552e8c0492237a3fabd9c`)
      setStoreweatherdata(response.data)
     }
     catch(error){
@@ -139,28 +148,67 @@ const WeatherApp=()=>{
 
   
   return(
-    <div>
-     <input type="text" value={city} onChange={(e)=>{
+    <div className="weathercontainer">
+      <div className="col-1">
+        
+        <div className="city">
+           {/* <img src={pin} className="pin"/>  */}
+           {city==null?pune:city}</div>
+        <div className="text-align"><div className="date">{monthname}   {date} <br/> {dayname} </div></div>
+      <div className="temp"> <div className="temperature">{((storeweatherdata?.main?storeweatherdata?.main?.temp:'')-273).toFixed(0)}°C</div>
+        <div className="feels-like">Feels like {((storeweatherdata?.main?storeweatherdata?.main?.feels_like:'')-273).toFixed(0)}°C</div></div>
+
+      </div>
+      <div className="col-2">
+        <img src={sun} className="sun"/>
+        <div className="description">{storeweatherdata?.weather?storeweatherdata?.weather[0]?.main:""}</div>
+
+      </div>
+      <div className="col-3">
+      <input type="text" value={city} 
+      placeholder="Search City"
+      className="inputefield"
+       onChange={(e)=>{
       setCity(e.target.value)
      }}/>
-      {/* <h1>City:{storeweatherdata.name}</h1>
-    <h1>temperature:{((storeweatherdata.main.temp)-273).toFixed(2)}°C</h1>
-    <h1>discription:{storeweatherdata?.weather[0]?.description}</h1> */}
+      <div className="weatherinfo"> 
+       <WeatherTells img={imgsunrise} text={sunriserealtime}/>
+        <WeatherTells img={imgsunset} text={sunsetrealtime}/>
+        <WeatherTells img={wind} text={`${storeweatherdata?.wind?.speed}km/h`}/>
+        <WeatherTells img={humidity} text={`${storeweatherdata?.main?storeweatherdata?.main?.humidity:''}℉`}/>
+        <WeatherTells img={visibility} text={`${storeweatherdata?.visibility?storeweatherdata?.visibility:''}Mtr`}/>
+      </div>
 
-          <h1>City:{storeweatherdata?.name?storeweatherdata.name:""}</h1>
-    <h1>temperature:{((storeweatherdata?.main?storeweatherdata?.main?.temp:"")-273).toFixed(2)}°C</h1>
-    <h1>discription:{storeweatherdata?.weather?storeweatherdata?.weather[0]?.main:""}({storeweatherdata?.weather?storeweatherdata?.weather[0]?.description:""})</h1>
-    {/* <h1>description{weatherdes}</h1> */}
-    <h1>visibility:{storeweatherdata?.visibility?storeweatherdata?.visibility:''}</h1>
-    <h1>
-      sunset:{sunsetrealtime}
-    
-    </h1>
-    <h1>  sunrise:{sunriserealtime}</h1>
-    <h1>monthname:{monthname}</h1>
-    <h1>date:{date}</h1>
-    <h1>dayname:{dayname}</h1>
+      </div>
     </div>
+
+
+
+
+
+    // <div>
+    //  <input type="text" value={city} onChange={(e)=>{
+    //   setCity(e.target.value)
+    //  }}/>
+    //   {/* <h1>City:{storeweatherdata.name}</h1>
+    // <h1>temperature:{((storeweatherdata.main.temp)-273).toFixed(2)}°C</h1>
+    // <h1>discription:{storeweatherdata?.weather[0]?.description}</h1> */}
+
+    //       <h1>City:{storeweatherdata?.name?storeweatherdata.name:""}</h1>
+    // <h1>temperature:{((storeweatherdata?.main?storeweatherdata?.main?.temp:"")-273).toFixed(2)}°C</h1>
+    // <h1>discription:{storeweatherdata?.weather?storeweatherdata?.weather[0]?.main:""}({storeweatherdata?.weather?storeweatherdata?.weather[0]?.description:""})</h1>
+    // {/* <h1>description{weatherdes}</h1> */}
+    // <h1>visibility:{storeweatherdata?.visibility?storeweatherdata?.visibility:''}</h1>
+    // <h1>
+    //   sunset:{sunsetrealtime}
+    
+    // </h1>
+    // <h1>  sunrise:{sunriserealtime}</h1>
+    // <h1>monthname:{monthname}</h1>
+    // <h1>date:{date}</h1>
+    // <h1>dayname:{dayname}</h1>
+    // <h1>wind speed:{storeweatherdata?.wind?.speed}</h1>
+    // </div>
   )
 }
 export default WeatherApp;

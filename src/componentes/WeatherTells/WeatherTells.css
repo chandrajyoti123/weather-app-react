@@ -1,0 +1,20 @@
+.weathertells{
+    width: 100%;
+    height: 100px;
+
+display: flex;
+align-items: center;
+
+
+/* padding-left: 50px; */
+/* background-color: pink; */
+}
+.imgofweathertells{
+    width: 70px;
+    margin-left: 70px;
+}
+.textofweathertells{
+    font-size: 45px;
+    color: white;
+    margin-left: 15px;
+}
