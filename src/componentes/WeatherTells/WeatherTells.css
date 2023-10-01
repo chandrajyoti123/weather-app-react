@@ -1,6 +1,6 @@
 .weathertells{
     width: 100%;
-    height: 100px;
+    height: 90px;
 
 display: flex;
 align-items: center;
@@ -10,11 +10,12 @@ align-items: center;
 /* background-color: pink; */
 }
 .imgofweathertells{
-    width: 70px;
+    width: 60px;
     margin-left: 70px;
 }
 .textofweathertells{
-    font-size: 45px;
+    font-size: 40px;
     color: white;
-    margin-left: 15px;
+    margin-left: 20px;
+    color: rgb(12, 87, 117)
 }

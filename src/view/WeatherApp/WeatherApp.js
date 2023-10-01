@@ -7,13 +7,15 @@ import cloud from './cloud.png'
 import clear from './clear.png'
 import sun from'./sun.png'
 import haze from './haze.png'
+import thunderstorm from './thunderstorms.png'
 import './WeatherApp.css'
 
-import imgsunrise from './sunrise.png'
-import imgsunset from './sunset.png'
-import wind from './wind1.png'
-import visibility from './visibility.png'
-import humidity from './humidity.png'
+
+import imgsunrise from './sunrise-blue.png'
+import imgsunset from './sunset-blue.png'
+import wind from './wind-blue.png'
+import visibility from './observe-blue.png'
+import humidity from './humidity-blue.png'
 import pin from './pin.png'
 import WeatherTells from "../../componentes/WeatherTells/WeatherTells";
 
@@ -46,6 +48,9 @@ const WeatherApp=()=>{
     }
    else if(sunstates=="Mist"){
       setSunimg(mist)
+    }
+   else if(sunstates=="Thunderstorm"){
+      setSunimg(thunderstorm)
     }
     else{
       setSunimg(sun)
@@ -189,8 +194,9 @@ const WeatherApp=()=>{
       <div className="col-1">
         
         <div className="city">
-           {/* <img src={pin} className="pin"/>  */}
-           {city==null?pune:city}</div>
+           { storeweatherdata?storeweatherdata?.name:"Pune"}
+           {/* {city==null?pune:city} */}
+           </div>
         <div className="text-align"><div className="date">{monthname}   {date} <br/> {dayname} </div></div>
       <div className="temp"> <div className="temperature">{((storeweatherdata?.main?storeweatherdata?.main?.temp:'')-273).toFixed(0)}°C</div>
         <div className="feels-like">Feels like {((storeweatherdata?.main?storeweatherdata?.main?.feels_like:'')-273).toFixed(0)}°C</div></div>
@@ -209,8 +215,8 @@ const WeatherApp=()=>{
       setCity(e.target.value)
      }}/>
       <div className="weatherinfo"> 
-       <WeatherTells img={imgsunrise} text={`sunrise ${sunriserealtime}:${sunriseminute}`}/>
-        <WeatherTells img={imgsunset} text={`sunset  ${sunsetrealtime}:${sunsetminute}`}/>
+       <WeatherTells img={imgsunrise} text={`sunrise ${sunriserealtime}:${sunriseminute} am`}/>
+        <WeatherTells img={imgsunset} text={`sunset  ${sunsetrealtime}:${sunsetminute} pm`}/>
         <WeatherTells img={wind} text={`${storeweatherdata?.wind?.speed}km/h`}/>
         <WeatherTells img={humidity} text={`${storeweatherdata?.main?storeweatherdata?.main?.humidity:''}℉`}/>
         <WeatherTells img={visibility} text={`${storeweatherdata?.visibility?storeweatherdata?.visibility:''}Mtr`}/>
@@ -224,20 +230,20 @@ const WeatherApp=()=>{
 
 
     // <div>
-    //  <input type="text" value={city} onChange={(e)=>{
-    //   setCity(e.target.value)
-    //  }}/>
-    //   {/* <h1>City:{storeweatherdata.name}</h1>
+    // <input type="text" value={city} onChange={(e)=>{
+    // setCity(e.target.value)
+    // }}/>
+    // {/* <h1>City:{storeweatherdata.name}</h1>
     // <h1>temperature:{((storeweatherdata.main.temp)-273).toFixed(2)}°C</h1>
     // <h1>discription:{storeweatherdata?.weather[0]?.description}</h1> */}
 
-    //       <h1>City:{storeweatherdata?.name?storeweatherdata.name:""}</h1>
+    // <h1>City:{storeweatherdata?.name?storeweatherdata.name:""}</h1>
     // <h1>temperature:{((storeweatherdata?.main?storeweatherdata?.main?.temp:"")-273).toFixed(2)}°C</h1>
     // <h1>discription:{storeweatherdata?.weather?storeweatherdata?.weather[0]?.main:""}({storeweatherdata?.weather?storeweatherdata?.weather[0]?.description:""})</h1>
     // {/* <h1>description{weatherdes}</h1> */}
     // <h1>visibility:{storeweatherdata?.visibility?storeweatherdata?.visibility:''}</h1>
     // <h1>
-    //   sunset:{sunsetrealtime}
+    // sunset:{sunsetrealtime}
     
     // </h1>
     // <h1>  sunrise:{sunriserealtime}</h1>
@@ -246,6 +252,7 @@ const WeatherApp=()=>{
     // <h1>dayname:{dayname}</h1>
     // <h1>wind speed:{storeweatherdata?.wind?.speed}</h1>
     // </div>
+
   )
 }
 export default WeatherApp;
