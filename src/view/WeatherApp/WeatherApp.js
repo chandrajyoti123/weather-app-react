@@ -62,7 +62,7 @@ const WeatherApp=()=>{
     "january",'february',"March","April","May","June","July","August","September","October","November","December"
 
   ])
-  const [monthname,setMonthname]=useState('')
+  const [monthname,setMonthname] =useState('')
 
   useEffect(()=>{
     
