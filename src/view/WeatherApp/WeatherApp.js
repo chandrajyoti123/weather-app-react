@@ -159,6 +159,7 @@ const WeatherApp=()=>{
    setSunset(sunsettime);
    setSunrise(sunrisetime);
 
+
   },[weatherData])
   const sunsetrealtime=new Date(sunset* 1000).getHours();
   const sunsetminute=new Date(sunset* 1000).getMinutes();
@@ -175,11 +176,12 @@ const WeatherApp=()=>{
     catch(error){
       console.log(error)
      }
-  
+
   
   }
   useEffect(()=>{
     weatherData()
+    
 
   },[city])
 
@@ -194,8 +196,8 @@ const WeatherApp=()=>{
       <div className="col-1">
         
         <div className="city">
-           { storeweatherdata?storeweatherdata?.name:"Pune"}
-           {/* {city==null?pune:city} */}
+           {/* { storeweatherdata?storeweatherdata?.name:"Pune"} */}
+           {city==null?pune:city}
            </div>
         <div className="text-align"><div className="date">{monthname}   {date} <br/> {dayname} </div></div>
       <div className="temp"> <div className="temperature">{((storeweatherdata?.main?storeweatherdata?.main?.temp:'')-273).toFixed(0)}°C</div>
